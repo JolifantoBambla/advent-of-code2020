@@ -7,6 +7,7 @@ def find_addends(numbers, goal_sum=2020):
 
 
 with open('input.txt') as f:
-    expenses = [int(i) for i in f.read().split('\n') if i != '']
+    expenses = list(map(int, f.readlines()))
     addends = find_addends(expenses)
     print(addends[0] * addends[1])
+
