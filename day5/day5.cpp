@@ -15,8 +15,8 @@ struct BoardingPass {
 
   explicit BoardingPass(const std::string &bits) :
     BoardingPass(
-      std::bitset<7>(bits.substr(0, 7)).to_ulong(),
-    std::bitset<3>(bits.substr(7, 3)).to_ulong()) {}
+      std::bitset<7>(bits, 0, 7, 'F', 'B').to_ulong(),
+      std::bitset<3>(bits, 7, 3, 'L', 'R').to_ulong()) {}
 
   bool operator==(const BoardingPass &rhs) const {
     return id == rhs.id;
@@ -57,13 +57,7 @@ std::vector<BoardingPass> parse_boarding_passes(const std::vector<std::string> &
   std::transform(
     seatCodes.begin(), seatCodes.end(),
     std::back_inserter(boardingPasses),
-    [](std::string seat) {
-      std::replace(seat.begin(), seat.end(), 'F', '0');
-      std::replace(seat.begin(), seat.end(), 'B', '1');
-      std::replace(seat.begin(), seat.end(), 'L', '0');
-      std::replace(seat.begin(), seat.end(), 'R', '1');
-      return BoardingPass(seat);
-    });
+    [](const auto &code) { return BoardingPass(code); });
   return boardingPasses;
 }
 
