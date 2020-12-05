@@ -43,19 +43,19 @@ struct BoardingPass {
   }
 };
 
-std::vector<std::string> read_input_file(const std::string &filename) {
-  std::vector<std::string> result;
+std::vector<std::string> read_seat_codes(const std::string &filename) {
+  std::vector<std::string> seatCodes;
   std::ifstream file(filename);
   std::copy(
     std::istream_iterator<std::string>(file),std::istream_iterator<std::string>(),
-    std::back_inserter(result));
-  return result;
+    std::back_inserter(seatCodes));
+  return seatCodes;
 }
 
-std::vector<BoardingPass> parse_boarding_passes(const std::vector<std::string> &foo) {
+std::vector<BoardingPass> parse_boarding_passes(const std::vector<std::string> &seatCodes) {
   std::vector<BoardingPass> boardingPasses;
   std::transform(
-    foo.begin(), foo.end(),
+    seatCodes.begin(), seatCodes.end(),
     std::back_inserter(boardingPasses),
     [](std::string seat) {
       std::replace(seat.begin(), seat.end(), 'F', '0');
@@ -76,7 +76,7 @@ unsigned int part2(const std::vector<BoardingPass> &boardingPasses) {
 
 int main() {
   auto boardingPasses = parse_boarding_passes(
-    read_input_file("input.txt"));
+    read_seat_codes("input.txt"));
   std::sort(boardingPasses.begin(), boardingPasses.end());
   std::cout << "Part 1: " << boardingPasses.back().id << "\n";
   std::cout << "Part 2: " << part2(boardingPasses) << "\n";
