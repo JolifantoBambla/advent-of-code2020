@@ -54,6 +54,7 @@ std::vector<std::string> read_seat_codes(const std::string &filename) {
 
 std::vector<BoardingPass> parse_boarding_passes(const std::vector<std::string> &seatCodes) {
   std::vector<BoardingPass> boardingPasses;
+  boardingPasses.reserve(seatCodes.size());
   std::transform(
     seatCodes.begin(), seatCodes.end(),
     std::back_inserter(boardingPasses),
@@ -62,7 +63,7 @@ std::vector<BoardingPass> parse_boarding_passes(const std::vector<std::string> &
 }
 
 unsigned int part2(const std::vector<BoardingPass> &boardingPasses) {
-  for (unsigned int i = 0, id = boardingPasses[0].id; id < boardingPasses.back().id - 1; ++i, ++id) {
+  for (unsigned int i = 0, id = boardingPasses[0].id; i < boardingPasses.size(); ++i, ++id) {
     if (id != boardingPasses[i].id) return id;
   }
   return 0;
