@@ -39,6 +39,11 @@ clojure
 (-main)
 ```
 
+## day7
+```
+cargo run input.txt
+```
+
 ## day12
 ```
 perl part1.pl < input.txt
