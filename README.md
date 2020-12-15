@@ -55,6 +55,11 @@ go run day13.go
 Rscript day14.r
 ```
 
+## day15
+```
+java DayFifteen.java input.txt
+```
+
 ## day?
 ```
 kotlinc part1.kt -include-runtime -d part1.jar && java -jar part1.jar
