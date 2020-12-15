@@ -50,6 +50,11 @@ perl part2.pl < input.txt
 go run day13.go
 ```
 
+## day14
+```
+Rscript day14.r
+```
+
 ## day?
 ```
 kotlinc part1.kt -include-runtime -d part1.jar && java -jar part1.jar
