@@ -20,7 +20,7 @@ struct Bag {
 
 impl Bag {
     fn new(color: &str, held_by: HashSet<String>) -> Bag {
-       return Bag { color: color.to_string(), held_by: held_by, holds: HashMap::new() };
+        return Bag { color: color.to_string(), held_by: held_by, holds: HashMap::new() };
     }
 }
 
@@ -44,7 +44,7 @@ where P: AsRef<Path> {
                 let mut held_by: HashSet<String> = HashSet::new();
                 held_by.insert(vertex.clone());
                 
-		 let mut outgoing_description = String::from(foo.remove(0));
+                let mut outgoing_description = String::from(foo.remove(0));
                 outgoing_description.truncate(outgoing_description.len() - 1);
                 let successors: Vec<&str> = outgoing_description.split(",").collect();
 
